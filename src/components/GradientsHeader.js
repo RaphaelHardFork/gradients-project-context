@@ -1,8 +1,8 @@
-import React from "react"
+import {useState} from "react"
 
 const GradientsHeader = (props) => {
-  const { gradients } = props
-  const [gradientIndex, setGradientIndex] = React.useState(
+  const { gradients, loaded } = props
+  const [gradientIndex, setGradientIndex] = useState(
     Math.floor(Math.random() * gradients.length)
   );
 
@@ -17,7 +17,8 @@ const GradientsHeader = (props) => {
   const handleNextClick = () => {
     setGradientIndex((gradientIndex + 1) % gradients.length)
   }
-  const backgroundImage = `linear-gradient(to right, ${gradients[gradientIndex].start}, ${gradients[gradientIndex].end})`
+  const backgroundImage = loaded ? `linear-gradient(to right, ${gradients[gradientIndex].start}, ${gradients[gradientIndex].end})`:''
+  
   const style = { backgroundImage }
 
   return (

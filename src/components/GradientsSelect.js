@@ -1,7 +1,5 @@
-import uniqueTags from "../uniqueTags"
-
 const GradientsSelect = (props) => {
-  const { filter, setFilter } = props
+  const { filter, setFilter, uniqueTags } = props
 
   const handleSelectChange = (event) => {
     setFilter(event.target.value)
