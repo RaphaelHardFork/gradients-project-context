@@ -235,3 +235,70 @@ import { useGradient } from "../hooks/useGradient";
 {...}
 const { state, dispatch } = useGradient();
 ```
+
+## Gestion des erreurs et temps de chargement
+
+Nos données ont besoin d'être chargées qu'une seul fois, on peut donc remplacer la variable `loading` par `loaded`.  
+Puis toute la gestion de l'affichage du chargement et de l'erreur se fait dans le ContextComponentProvider :
+
+```js
+// /context/gradientContext.js
+
+return (
+  <GradientContext.Provider value={{ state, dispatch }}>
+    {state.error ? (
+      <h1 className="alert alert-danger">{state.error}</h1>
+    ) : !state.loaded ? (
+      <h1>Loading...</h1>
+    ) : (
+      children
+    )}
+  </GradientContext.Provider>
+);
+```
+
+## Mise en place des Routes
+
+Installer la dépendance :  
+`yarn add react-router-dom`
+
+`index.js` :
+
+```js
+import { BrowserRouter as Router } from 'react-router-dom'
+{...}
+ReactDOM.render(
+  <React.StrictMode>
+    <Router>
+      <App />
+    </Router>
+  </React.StrictMode>,
+  document.getElementById('root')
+)
+```
+
+Mise en place des routes dans `App.js`:
+
+```js
+const App = () => {
+  return (
+    <div className="min-vh-100 d-flex flex-column">
+      <GradientContextProvider>
+        <Switch>
+          <Route exact path="/">
+            <GradientsHeader />
+            <GradientsApp />
+          </Route>
+          <Route exact path="/FullScreen/:id">
+            <FullScreen />
+          </Route>
+        </Switch>
+        <Footer />
+      </GradientContextProvider>
+    </div>
+  );
+};
+```
+
+Création du dossier `pages` contenant les différents Component correspondant aux pages.
+On créer le style de la page correspondant à la fonction "plein écran"

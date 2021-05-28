@@ -33,7 +33,13 @@ export const GradientContextProvider = ({ children }) => {
 
   return (
     <GradientContext.Provider value={{ state, dispatch }}>
-      {!state.loaded ? <p>Loading...</p> : children}
+      {state.error ? (
+        <h1 className="alert alert-danger">{state.error}</h1>
+      ) : !state.loaded ? (
+        <h1>Loading...</h1>
+      ) : (
+        children
+      )}
     </GradientContext.Provider>
   )
 }

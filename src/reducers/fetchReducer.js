@@ -33,7 +33,7 @@ export const fetchReducer = (state, action) => {
     case 'FETCH_FAILURE':
       return {
         ...state,
-        loading: false,
+        loaded: false,
         error: action.payload,
       }
 
