@@ -1,16 +1,16 @@
-export const fetchReducer = (state, action) =>{
-  switch(action.type){
+export const fetchReducer = (state, action) => {
+  switch (action.type) {
     case 'FETCH_INIT':
       return {
         ...state,
-        loading:true
+        loading: true,
       }
     case 'FETCH_SUCCESS':
       // fonction unique tags
       function allTags(list) {
         let listTotal = []
         for (let element of list) {
-          if ("tags" in element) {
+          if ('tags' in element) {
             listTotal = listTotal.concat(element.tags)
           }
         }
@@ -25,18 +25,24 @@ export const fetchReducer = (state, action) =>{
       }
       return {
         ...state,
-        loading:false,
-        gradientsList:action.payload,
-        uniqueTags:allTags(action.payload),
-        loaded:true
+        loading: false,
+        gradientsList: action.payload,
+        uniqueTags: allTags(action.payload),
+        loaded: true,
       }
     case 'FETCH_FAILURE':
       return {
         ...state,
-        loading:false,
-        error:action.payload
-        }
-      default:
-        throw new Error(`Wrong input in fetchreducer: ${action.type}`)
+        loading: false,
+        error: action.payload,
+      }
+
+    case 'CHANGE_FILTER':
+      return {
+        ...state,
+        filter: action.payload,
+      }
+    default:
+      throw new Error(`Wrong input in fetchreducer: ${action.type}`)
   }
 }

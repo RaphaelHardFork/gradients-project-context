@@ -1,33 +1,33 @@
-import Gradient from "./Gradient"
+import { useGradient } from '../hooks/useGradient'
+import Gradient from './Gradient'
 
-const GradientsList = (props) => {
-  const { gradients, filter, setFilter } = props
+const GradientsList = () => {
+  const { state } = useGradient()
 
-  const filteredList = gradients.filter((elem) => {
-    if (filter === 'Tous') {
+  const filteredList = state.gradientsList.filter((elem) => {
+    if (state.filter === 'Tous') {
       return true
     } else {
-      return elem.tags.includes(filter)
+      return elem.tags.includes(state.filter)
     }
   })
 
   return (
     <ul className="row list-unstyled">
       {filteredList.map((elem) => {
-        return <li key={elem.name} className="col-lg-3 col-md-4 col-sm-6"><Gradient setFilter={setFilter} filter={filter} colorStart={elem.start} colorEnd={elem.end} name={elem.name} tags={elem.tags} /></li>
+        return (
+          <li key={elem.name} className="col-lg-3 col-md-4 col-sm-6">
+            <Gradient
+              colorStart={elem.start}
+              colorEnd={elem.end}
+              name={elem.name}
+              tags={elem.tags}
+            />
+          </li>
+        )
       })}
     </ul>
   )
 }
 
 export default GradientsList
-
-/*
-{gradients.map((elem)=>{
-  if (filter==='Tous'){
-    return <li key={elem.name} className="col-lg-3 col-md-4 col-sm-6"><Gradient setFilter={setFilter} filter={filter} colorStart={elem.start} colorEnd={elem.end} name={elem.name} tags={elem.tags} /></li>
-  }else if (elem.tags.includes(filter)){
-    return <li key={elem.name} className="col-lg-3 col-md-4 col-sm-6"><Gradient setFilter={setFilter} filter={filter} colorStart={elem.start} colorEnd={elem.end} name={elem.name} tags={elem.tags} /></li>
-  }
-})}
-*/
