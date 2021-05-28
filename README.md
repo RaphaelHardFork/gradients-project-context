@@ -302,3 +302,9 @@ const App = () => {
 
 Création du dossier `pages` contenant les différents Component correspondant aux pages.
 On créer le style de la page correspondant à la fonction "plein écran"
+
+Pour accèder à la page on met en place `<Link>` dans `<Gradient>` :
+
+```js
+<Link to="/fullscreen/:id">Full Screen</Link>
+```
