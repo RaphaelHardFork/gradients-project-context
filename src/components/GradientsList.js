@@ -22,6 +22,7 @@ const GradientsList = () => {
               colorEnd={elem.end}
               name={elem.name}
               tags={elem.tags}
+              id={elem.id}
             />
           </li>
         )

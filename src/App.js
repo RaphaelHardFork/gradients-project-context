@@ -4,6 +4,8 @@ import Footer from './components/Footer'
 import GradientsApp from './components/GradientsApp'
 import { GradientContextProvider } from './context/gradientContext'
 
+import './App.css'
+
 import { Switch, Route } from 'react-router-dom'
 import { FullScreen } from './pages/FullScreen'
 
