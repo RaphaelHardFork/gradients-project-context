@@ -306,5 +306,21 @@ On créer le style de la page correspondant à la fonction "plein écran"
 Pour accèder à la page on met en place `<Link>` dans `<Gradient>` :
 
 ```js
-<Link to="/fullscreen/:id">Full Screen</Link>
+<Link to=`/fullscreen/${id}`>Full Screen</Link>
+```
+
+Création de la page `FullScreen.js`, on import dans le components :
+
+```js
+const { state } = useGradient();
+const params = useParams();
+let { id } = params;
+```
+
+Puis chaque bouton sur l'écran est englober dans une balise `<Link>` :
+
+```js
+<Link to={`/fullscreen/${Number(id) + 1}`}>
+  <button className="btn btn-backdrop me-4">Suivant</button>
+</Link>
 ```

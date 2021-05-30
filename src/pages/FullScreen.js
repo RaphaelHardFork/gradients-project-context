@@ -13,11 +13,6 @@ export const FullScreen = () => {
     state.gradientsList[id - 1].start
   }, ${state.gradientsList[id - 1].end})`
 
-  /*
-  const linearGradient = `linear-gradient(to right, ${colorStart}, ${colorEnd})`
-  return <code>background-image: {linearGradient};</code>
-  */
-
   return (
     <div style={{ backgroundImage: style, minHeight: '95vh' }} className="">
       <div
